@@ -12,6 +12,7 @@ router.post('/',
   handleInputErrors,
   ProjectController.createProject
 )
+
 router.get('/', ProjectController.getAllProjects)
 
 export default router
