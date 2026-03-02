@@ -1,0 +1,24 @@
+import type { Request, Response, NextFunction } from "express"
+import Task, { ITask } from "../models/Task"
+
+declare global { // permite reescribir el scope global para agregarlo al Request de express
+  namespace Express {
+    interface Request {
+      task: ITask
+    }
+  }
+}
+
+export async function taskExists(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { taskId } = req.params
+    const task = await Task.findById(taskId)
+    if(!task) {
+      return res.status(404).json({ error: 'Tarea no encontrado' })
+    }
+    req.task = task // ahora funciona gracias a que se reescribio el Request de express
+    next()
+  } catch (error) {
+    res.status(500).json({ error: 'Hubo un error' })
+  }
+}
