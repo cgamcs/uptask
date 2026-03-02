@@ -7,7 +7,7 @@ export class ProjectController {
 
     try {
       await project.save()
-      res.send('Proyecto guardado!')
+      res.send("Proyecto guardado!")
     } catch (error) {
       console.log(error)
     }
