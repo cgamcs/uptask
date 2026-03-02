@@ -50,7 +50,24 @@ export class TaskController {
         return res.status(400).json({ error: 'Acción no valida' })
       }
       await task.save()
-      res.send('Tarea actualizada!')
+      res.send("Tarea actualizada!")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  static deleteTask = async (req: Request, res: Response) => {
+    const { taskId } = req.params
+    try {
+      const task = await Task.findById(taskId)
+      if(!task) {
+        return res.status(404).json({ error: 'Tarea no encontrada' })
+      }
+      if(task.project.toString() !== req.project._id.toString()) {
+        return res.status(400).json({ error: 'Acción no valida' })
+      }
+      await task.deleteOne()
+      res.send("Tarea eliminada!")
     } catch (error) {
       console.log(error)
     }
