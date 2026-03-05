@@ -1,13 +1,19 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import { connectDB } from './config/db'
 import projectRoutes from './routes/projectRouter'
+import { corsConfig } from './config/conrs'
 
 dotenv.config({ quiet: true })
+
+
 
 connectDB()
 
 const app = express()
+
+app.use(cors(corsConfig))
 
 app.use(express.json())
 
