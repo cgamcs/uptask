@@ -125,7 +125,7 @@ function DashboardView() {
               ))}
             </ul>
           ) : (
-            <p className="text-center">Aún no hay proyectos.</p>
+            <p className="text-center">No hay proyectos aún <Link to="/projects/create" className="font-medium text-purple-500">Crea uno</Link></p>
           )}
         </div>
       </>

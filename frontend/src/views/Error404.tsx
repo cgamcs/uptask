@@ -6,7 +6,7 @@ function Error404() {
       <div className="flex flex-col text-center">
         <h1 className='text-3xl mb-5'>404 - Página No Encontrada</h1>
         <p>La página que estás buscando no existe.</p>
-        <Link to="/" className="text-indigo-500 hover:text-indigo-700 underline">
+        <Link to="/" className="text-purple-500 hover:text-purple-700 underline">
           Volver a la página principal
         </Link>
       </div>
