@@ -26,7 +26,7 @@ function AppLayout() {
         </p>
       </footer>
 
-      <Toaster position="top-right" />
+      <Toaster position="top-right" richColors />
     </>
   )
 }
