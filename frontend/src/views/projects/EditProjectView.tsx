@@ -17,7 +17,7 @@ function EditProjectView() {
 
   if (isLoading) return <span className="loader"></span>
 
-  if (data) return <EditProjectForm data={data} />
+  if (data) return <EditProjectForm data={data} projectId={projectId} />
 }
 
 export default EditProjectView
