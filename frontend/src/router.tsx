@@ -3,6 +3,7 @@ import AppLayout from './layouts/AppLayout'
 import DashboardView from './views/DashboardView'
 import CreateProjectiew from './views/projects/CreateProjectView'
 import EditProjectView from './views/projects/EditProjectView'
+import Error404 from './views/Error404'
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
             <Route path='/projects/create' element={<CreateProjectiew />}  />
             <Route path='/projects/:projectId/edit' element={<EditProjectView />}  />
           </Route>
+          <Route path='/404' element={<Error404 />} />
         </Route>
       </Routes>
     </BrowserRouter>
