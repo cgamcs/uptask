@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom"
 import { Fragment } from "react"
+import { Link } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { Menu, Transition } from "@headlessui/react"
 import { EllipsisVertical } from "lucide-react"
+import { toast } from "sonner"
 import { getProjects } from "@/api/ProjectAPI"
 
 function DashboardView() {
-  const { data, isError, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
   })
+
+  if (error) return toast.error(error.message)
 
   if (isLoading) return <span className="loader"></span>
 
