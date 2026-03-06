@@ -1,13 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import { corsConfig } from './config/conrs'
 import { connectDB } from './config/db'
 import projectRoutes from './routes/projectRouter'
-import { corsConfig } from './config/conrs'
 
 dotenv.config({ quiet: true })
-
-
 
 connectDB()
 
