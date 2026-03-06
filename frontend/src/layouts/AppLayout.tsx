@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom"
+import { Toaster } from 'sonner'
 import Logo from "@/components/Logo"
 import NavMenu from "@/components/NavMenu"
 
@@ -24,6 +25,8 @@ function AppLayout() {
           César García - {new Date().getFullYear()}
         </p>
       </footer>
+
+      <Toaster position="top-right" />
     </>
   )
 }

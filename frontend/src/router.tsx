@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AppLayout from './layouts/AppLayout'
 import DashboardView from './views/DashboardView'
-import CreateProjectiew from './views/projects/CreateProjectiew'
+import CreateProjectiew from './views/projects/CreateProjectView'
 
 export default function Router() {
   return (
