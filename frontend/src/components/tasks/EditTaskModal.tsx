@@ -1,9 +1,47 @@
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { useNavigate } from "react-router-dom"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useNavigate, useParams } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import type { Task, TaskFormData } from "@/types"
+import { updateTask } from "@/api/TaskApi"
+import TaskForm from "./TaskForm"
 
-export default function EditTaskModal() {
+type EditTaskProps = {
+  data: Task
+  taskId: Task['_id']
+}
+
+export default function EditTaskModal({data, taskId}: EditTaskProps) {
   const navigate = useNavigate()
+  const params = useParams()
+  const projectId = params.projectId!
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<TaskFormData>({defaultValues: {
+    name: data.name,
+    description: data.description
+  }})
+
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation({
+    mutationFn: updateTask,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({queryKey: ['editProject', projectId]})
+      toast.success(data)
+      reset()
+      navigate(location.pathname, {replace: true})
+    }
+  })
+
+  const handleEditTask = (formData: TaskFormData) => {
+    const data = { projectId, taskId, formData }
+    mutate(data)
+  }
 
   return (
     <Transition appear show={true} as={Fragment}>
@@ -41,11 +79,20 @@ export default function EditTaskModal() {
                   <span className="text-fuchsia-600">este formulario</span>
                 </p>
 
-                <form className="mt-10 space-y-3" noValidate>
+                <form
+                  className="mt-10 space-y-3"
+                  noValidate
+                  onSubmit={handleSubmit(handleEditTask)}
+                >
+                  <TaskForm
+                    register={register}
+                    errors={errors}
+                  />
+
                   <input
                     type="submit"
                     className=" bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black  text-xl cursor-pointer"
-                    value="Guardar Tarea"
+                    value="Guardar Cambios"
                   />
                 </form>
               </Dialog.Panel>
