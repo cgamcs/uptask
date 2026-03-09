@@ -1,16 +1,33 @@
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
+import { getTaskById } from "@/api/TaskApi"
+import { toast } from "sonner"
 
 export default function TaskModalDetails() {
+  const navigate = useNavigate()
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
-  const taskId = queryParams.get('viewTask')
+  const taskId = queryParams.get('viewTask')!
   const show = taskId ? true : false
 
-  const navigate = useNavigate()
+  const params = useParams()
+  const projectId = params.projectId!
 
-  return (
+  const { data, isError, error } = useQuery({
+    queryKey: ['task', taskId],
+    queryFn: () => getTaskById({projectId, taskId}),
+    enabled: !!taskId,
+    retry: false
+  })
+
+  if (isError) {
+    toast.error(error.message)
+    return <Navigate to={`/projects/${projectId}`} />
+  }
+
+  if (data) return (
     <>
       <Transition appear show={show} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={() => navigate(location.pathname, {replace: true})}>
