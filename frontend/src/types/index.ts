@@ -7,7 +7,9 @@ export const taskSchema = z.object({
   name: z.string(),
   description: z.string(),
   project: z.string(),
-  status: taskStatusSchema
+  status: taskStatusSchema,
+  updatedAt: z.string(),
+  createdAt: z.string()
 })
 export type Task = z.infer<typeof taskSchema>
 export type TaskFormData = Pick<Task, 'name' | 'description'>
