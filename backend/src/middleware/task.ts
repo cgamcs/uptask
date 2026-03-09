@@ -14,7 +14,7 @@ export async function taskExists(req: Request, res: Response, next: NextFunction
     const { taskId } = req.params
     const task = await Task.findById(taskId)
     if(!task) {
-      return res.status(404).json({ error: 'Tarea no encontrado' })
+      return res.status(404).json({ error: 'Tarea no encontrada' })
     }
     req.task = task // ahora funciona gracias a que se reescribio el Request de express
     next()
