@@ -24,7 +24,7 @@ function TaskCard({task}: TaskCardProps) {
       toast.error(error.message)
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({queryKey: ['editProject', projectId]})
+      queryClient.invalidateQueries({queryKey: ['project', projectId]})
       toast.success(data)
     }
   })
