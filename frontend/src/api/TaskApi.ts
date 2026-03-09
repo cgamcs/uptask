@@ -2,12 +2,12 @@ import { isAxiosError } from "axios"
 import api from "@/lib/axios"
 import type { Project, TaskFormData } from "@/types"
 
-type TaskAPIType = {
+type TaskType = {
   formData: TaskFormData,
   projectId: Project['_id']
 }
 
-export async function createTask({ formData, projectId }: TaskAPIType) {
+export async function createTask({ formData, projectId }: Pick<TaskType, 'formData' | 'projectId'>) {
   try {
     const url = `/projects/${projectId}/tasks`
     const { data } = await api.post<string>(url, formData)

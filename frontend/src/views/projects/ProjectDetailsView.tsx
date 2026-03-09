@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { getProjectById } from "@/api/ProjectAPI"
 import AddTaskModal from "@/components/tasks/AddTaskModal"
+import TaskList from "@/components/tasks/TaskList"
 
 function ProjectDetailsView() {
   const navigate = useNavigate()
   const params = useParams()
   const projectId = params.projectId!
   const { data, isError, isLoading } = useQuery({
-    queryKey: ["getProject", projectId],
+    queryKey: ["editProject", projectId],
     queryFn: () => getProjectById(projectId),
     retry: false
   })
@@ -18,19 +19,23 @@ function ProjectDetailsView() {
   if (data) return (
     <>
       <h1 className="text-4xl font-bold">{data.projectName}</h1>
-      <p className="text-xl text-gray-500 font-light mt-5">{data.description}</p>
+      <p className="text-xl text-gray-500 font-light mt-5">
+        {data.description}
+      </p>
 
       <nav className="my-5 flex gap-">
         <button
           type="button"
           className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
-          onClick={() => navigate('?newTask=true')}
+          onClick={() => navigate("?newTask=true")}
         >
           Agregar Tarea
         </button>
       </nav>
 
       <AddTaskModal />
+
+      <TaskList tasks={data.tasks} />
     </>
   )
 }
