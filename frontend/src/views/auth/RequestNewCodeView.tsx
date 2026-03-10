@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
-import { RequestConfirmationCodeForm } from "../../types"
+import type { RequestConfirmationCodeForm } from "@/types"
 import ErrorMessage from "@/components/ErrorMessage"
+import { useMutation } from "@tanstack/react-query"
+import { requestConfirmationCode } from "@/api/AuthAPI"
+import { toast } from "sonner"
 
 export default function RegisterView() {
     const initialValues: RequestConfirmationCodeForm = {
@@ -10,7 +13,18 @@ export default function RegisterView() {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: initialValues })
 
-    const handleRequestCode = (formData: RequestConfirmationCodeForm) => {}
+    const { mutate } = useMutation({
+      mutationFn: requestConfirmationCode,
+      onError: (error) => {
+        toast.error(error.message)
+      },
+      onSuccess: (data) => {
+        toast.success(data)
+        reset()
+      }
+    })
+
+    const handleRequestCode = (formData: RequestConfirmationCodeForm) => mutate(formData)
 
     return (
         <>
