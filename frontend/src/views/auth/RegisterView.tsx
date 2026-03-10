@@ -138,7 +138,7 @@ export default function RegisterView() {
         <Link
           className="text-center text-gray-300 active:scale-95 transition-transform ease-linear 150ms"
           to='/auth/login'
-        >¿Ya tienes cuenta? Iniciar Sesió</Link>
+        >¿Ya tienes cuenta? Iniciar Sesión</Link>
       </nav>
     </>
   )
