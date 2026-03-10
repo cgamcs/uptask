@@ -1,10 +1,12 @@
-import { useForm } from "react-hook-form";
-import type { UserRegistrationForm } from "@/types/index";
-import ErrorMessage from "@/components/ErrorMessage";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form"
+import type { UserRegistrationForm } from "@/types/index"
+import ErrorMessage from "@/components/ErrorMessage"
+import { Link } from "react-router-dom"
+import { useMutation } from "@tanstack/react-query"
+import { createAccount } from "@/api/AuthAPI"
+import { toast } from "sonner"
 
 export default function RegisterView() {
-  
   const initialValues: UserRegistrationForm = {
     name: '',
     email: '',
@@ -12,11 +14,22 @@ export default function RegisterView() {
     password_confirmation: '',
   }
 
-  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<UserRegistrationForm>({ defaultValues: initialValues });
+  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<UserRegistrationForm>({ defaultValues: initialValues })
 
-  const password = watch('password');
+  const password = watch('password')
 
-  const handleRegister = (formData: UserRegistrationForm) => {}
+  const { mutate } = useMutation({
+    mutationFn: createAccount,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data)
+      reset()
+    }
+  })
+
+  const handleRegister = (formData: UserRegistrationForm) => mutate(formData)
 
   return (
     <>
@@ -125,7 +138,7 @@ export default function RegisterView() {
         <Link
           className="text-center text-gray-300 active:scale-95 transition-transform ease-linear 150ms"
           to='/auth/login'
-        >¿Ya tienes cuenta? Iniciar Sesión</Link>
+        >¿Ya tienes cuenta? Iniciar Sesió</Link>
       </nav>
     </>
   )
