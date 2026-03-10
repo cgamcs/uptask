@@ -1,6 +1,10 @@
 import type { Request, Response } from "express"
 import User from "../models/User"
 import { hashPassword } from "../utils/auth"
+import Token from "../models/Token"
+import { generateToken } from "../utils/token"
+import { transporter } from "../config/nodemailer"
+import { AuthEmail } from "../emails/AuthEmail"
 
 export class AuthController {
   static createAccount = async (req: Request, res: Response) => {
@@ -19,7 +23,20 @@ export class AuthController {
 
       // Hashear la contraseña
       user.password = await hashPassword(password)
-      await user.save()
+
+      // Generar token
+      const token = new Token()
+      token.token = generateToken()
+      token.user = user._id
+
+      // Enviar email
+      AuthEmail.sendConfirmationEmail({
+        email: user.email,
+        name: user.name,
+        token: token.token
+      })
+
+      await Promise.allSettled([user.save(), token.save()])
       res.send('Cuenta creada, revisa tu email para confirmarla')
     } catch (error) {
       res.status(500).json({ error: "Hubo un error" })
