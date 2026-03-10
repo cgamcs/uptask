@@ -87,7 +87,7 @@ export class AuthController {
           token: token.token
         })
 
-        const error = new Error('La cuenta no ha sido confirmada')
+        const error = new Error('La cuenta no ha sido confirmada, revise su email se enviara un nuevo token ')
         return res.status(401).json({ error: error.message })
       }
 
