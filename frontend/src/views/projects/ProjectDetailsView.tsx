@@ -5,6 +5,7 @@ import AddTaskModal from "@/components/tasks/AddTaskModal"
 import TaskList from "@/components/tasks/TaskList"
 import EditTaskData from "@/components/tasks/EditTaskData"
 import TaskModalDetails from "@/components/tasks/TaskModalDetails"
+import Spinner from "@/components/Spinner"
 
 function ProjectDetailsView() {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ function ProjectDetailsView() {
   })
 
   if (isError) return <Navigate to='/404' />
-  if (isLoading) return <span className="loader"></span>
+  if (isLoading) return <Spinner />
   if (data) return (
     <>
       <h1 className="text-4xl font-bold">{data.projectName}</h1>

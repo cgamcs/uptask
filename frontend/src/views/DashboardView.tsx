@@ -5,6 +5,7 @@ import { Menu, Transition } from "@headlessui/react"
 import { EllipsisVertical } from "lucide-react"
 import { toast } from "sonner"
 import { deleteProject, getProjects } from "@/api/ProjectAPI"
+import Spinner from "@/components/Spinner"
 
 function DashboardView() {
   const { data, error, isLoading } = useQuery({
@@ -27,7 +28,7 @@ function DashboardView() {
 
   if (error) return toast.error(error.message)
 
-  if (isLoading) return <span className="loader"></span>
+  if (isLoading) return <Spinner />
 
   if (data)
     return (
