@@ -3,12 +3,18 @@ import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/re
 import { Link } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 import type { User } from '@/types'
+import { useQueryClient } from '@tanstack/react-query'
 
 type NavMenuProps = {
   name: User['name']
 }
 
 export default function NavMenu({name} : NavMenuProps) {
+  const queryClient = useQueryClient()
+  const logout = () => {
+    localStorage.removeItem('AUTH_TOKEN_UPTASK')
+    queryClient.invalidateQueries({ queryKey: ['user'] })
+  }
 
   return (
     <Popover className="relative">
@@ -39,7 +45,7 @@ export default function NavMenu({name} : NavMenuProps) {
             <button
               className='block p-2 hover:text-purple-950'
               type='button'
-              onClick={() => { }}
+              onClick={logout}
             >
               Cerrar Sesión
             </button>
