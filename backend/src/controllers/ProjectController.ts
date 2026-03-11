@@ -18,7 +18,11 @@ export class ProjectController {
 
   static getAllProjects = async (req: Request, res: Response) => {
     try {
-      const projects = await Project.find({})
+      const projects = await Project.find({
+        $or: [
+          {manager: {$in: req.user._id}} // Solo obtine los porjectos que le pertenecen al usuario autenticado
+        ]
+      })
       res.json(projects)
     } catch (error) {
       console.log(error)
