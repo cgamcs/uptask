@@ -12,7 +12,7 @@ function AppLayout() {
 
   if (isError) return <Navigate to='/auth/login' />
 
-  return (
+  if (data) return (
     <>
       <header className="bg-gray-800">
         <div className="max-w-7xl 2xl:max-w-screen-2xl mx-auto flex px-5 lg:px-0 flex-row justify-between items-center">
