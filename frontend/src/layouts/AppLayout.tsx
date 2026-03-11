@@ -1,9 +1,17 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link, Navigate, Outlet } from "react-router-dom"
 import { Toaster } from 'sonner'
 import Logo from "@/components/Logo"
 import NavMenu from "@/components/NavMenu"
+import { useAuth } from "@/hooks/useAuth"
+import Spinner from "@/components/Spinner"
 
 function AppLayout() {
+  const { data, isError, isLoading } = useAuth()
+  
+  if (isLoading) return <Spinner />
+
+  if (isError) return <Navigate to='/auth/login' />
+
   return (
     <>
       <header className="bg-gray-800">
