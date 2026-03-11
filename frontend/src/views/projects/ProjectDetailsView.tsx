@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import { getProjectById } from "@/api/ProjectAPI"
 import AddTaskModal from "@/components/tasks/AddTaskModal"
 import TaskList from "@/components/tasks/TaskList"
@@ -26,7 +26,7 @@ function ProjectDetailsView() {
         {data.description}
       </p>
 
-      <nav className="my-5 flex gap-">
+      <nav className="my-5 flex gap-5">
         <button
           type="button"
           className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
@@ -34,6 +34,13 @@ function ProjectDetailsView() {
         >
           Agregar Tarea
         </button>
+
+        <Link
+          className="bg-gray-400 hover:bg-gray-500 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
+          to={'team'}
+        >
+          Colaboradores
+        </Link>
       </nav>
 
       <TaskList tasks={data.tasks} />
