@@ -25,7 +25,8 @@ export class TaskController {
 
   static getTaskById = async (req: Request, res: Response) => {
     try{
-      res.json(req.task)
+      const task = await (await Task.findById(req.task._id)).populate({path: 'completedBy', select: 'id name email'})
+      res.json(task)
     } catch (error) {
       console.log(error)
     }
