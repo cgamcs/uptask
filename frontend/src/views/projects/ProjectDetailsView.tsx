@@ -8,6 +8,7 @@ import TaskModalDetails from "@/components/tasks/TaskModalDetails"
 import Spinner from "@/components/Spinner"
 import { useAuth } from "@/hooks/useAuth"
 import { isManager } from "@/utils/policies"
+import { useMemo } from "react"
 
 function ProjectDetailsView() {
   const navigate = useNavigate()
@@ -20,9 +21,14 @@ function ProjectDetailsView() {
     queryFn: () => getProjectById(projectId),
     retry: false
   })
+  
+  const canEdit = useMemo(()=> data?.manager === user?._id, [data, user])
 
+  console.log(canEdit)
+  
   if (isError) return <Navigate to='/404' />
   if (isLoading && authLoading) return <Spinner />
+
   if (data && user) return (
     <>
       <h1 className="text-4xl font-bold">{data.projectName}</h1>
@@ -49,7 +55,7 @@ function ProjectDetailsView() {
         </nav>
       )}
 
-      <TaskList tasks={data.tasks} />
+      <TaskList tasks={data.tasks} canEdit={canEdit} />
 
       <AddTaskModal />
       <EditTaskData />
