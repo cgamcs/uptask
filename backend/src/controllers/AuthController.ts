@@ -1,4 +1,4 @@
-import type { Request, Response } from "express"
+import { json, type Request, type Response } from "express"
 import User from "../models/User"
 import { checkPassword, hashPassword } from "../utils/auth"
 import Token from "../models/Token"
@@ -209,5 +209,24 @@ export class AuthController {
 
   static user = async (req: Request, res: Response) => {
     return res.json(req.user)
+  }
+
+  static updateProfile = async (req: Request, res: Response) => {
+    const { name, email } = req.body
+
+    const userExists = await User.findOne({email})
+    if(userExists && userExists._id.toString() !== req.user._id.toString()) {
+      return res.status(409).json({ error: "Ese email ya esta registrado" })
+    }
+
+    req.user.name = name
+    req.user.email = email
+
+    try {
+      await req.user.save()
+      res.send('Perfil actualizado!')
+    } catch (error) {
+      res.status(500).json({ error: 'Hubo un error' })
+    }
   }
 }
