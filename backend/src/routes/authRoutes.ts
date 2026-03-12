@@ -78,4 +78,18 @@ router.put('/profile',
   AuthController.updateProfile
 )
 
+router.put('/update-password',
+  authenticate,
+  body('current_password').notEmpty().withMessage('La contraseña actual no puede ir vacía'),
+  body('password').isLength({min: 16}).withMessage('La contraseña es muy corta, minimo 16 caracteres'),
+  body('password_confirmation').custom((value, {req}) => {
+    if (value !== req.body.password) {
+      throw new Error('Las contraseñas son diferentes')
+    }
+    return true
+  }),
+  handleInputErrors,
+  AuthController.updateCurrentUserPassword
+)
+
 export default router
