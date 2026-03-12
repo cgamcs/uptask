@@ -23,8 +23,6 @@ function ProjectDetailsView() {
   })
   
   const canEdit = useMemo(()=> data?.manager === user?._id, [data, user])
-
-  console.log(canEdit)
   
   if (isError) return <Navigate to='/404' />
   if (isLoading && authLoading) return <Spinner />
