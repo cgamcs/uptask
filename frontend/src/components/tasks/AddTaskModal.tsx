@@ -98,7 +98,7 @@ export default function AddTaskModal() {
           
                     <input 
                       type="submit"
-                      value="Crear Proyecto"
+                      value="Crear Tarea"
                       className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 mt-5 text-white uppercase font-bold cursor-pointer transition-colors"
                     />
                   </form>
