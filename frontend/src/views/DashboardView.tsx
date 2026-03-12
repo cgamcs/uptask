@@ -1,32 +1,21 @@
 import { Fragment } from "react"
-import { Link } from "react-router-dom"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { Link, useNavigate } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
 import { Menu, Transition } from "@headlessui/react"
 import { EllipsisVertical } from "lucide-react"
 import { toast } from "sonner"
-import { deleteProject, getProjects } from "@/api/ProjectAPI"
+import { getProjects } from "@/api/ProjectAPI"
 import Spinner from "@/components/Spinner"
 import { useAuth } from "@/hooks/useAuth"
 import { isManager } from "@/utils/policies"
+import DeleteProjectModal from "@/components/projects/DeleteProjectModal"
 
 function DashboardView() {
+  const navigate = useNavigate()
   const { data: user, isLoading: authLoading } = useAuth()
   const { data, error, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
-  })
-
-  const queryClient = useQueryClient()
-
-  const { mutate } = useMutation({
-    mutationFn: (id: string) => deleteProject(id),
-    onError: (error) => {
-      toast.error(error.message)
-    },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["projects"]})
-      toast.success(data)
-    }
   })
 
   if (error) return toast.error(error.message)
@@ -125,7 +114,7 @@ function DashboardView() {
                                 <button
                                   type="button"
                                   className="block px-3 py-1 text-sm leading-6 text-red-500"
-                                  onClick={() => mutate(project._id)}
+                                  onClick={() => navigate(location.pathname + `?deleteProject=${project._id}`)}
                                 >
                                   Eliminar Proyecto
                                 </button>
@@ -143,6 +132,8 @@ function DashboardView() {
             <p className="text-center">No hay proyectos aún <Link to="/projects/create" className="font-medium text-purple-500">Crea uno</Link></p>
           )}
         </div>
+
+        <DeleteProjectModal />
       </>
     )
 }
