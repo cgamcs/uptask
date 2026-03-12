@@ -130,7 +130,7 @@ export default function RegisterView() {
         <input
           type="submit"
           value='Registrarme'
-          className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black  text-xl cursor-pointer"
+          className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white font-black active:scale-95 transition-all ease-linear text-xl cursor-pointer"
         />
       </form>
 

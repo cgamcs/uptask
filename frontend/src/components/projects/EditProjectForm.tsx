@@ -70,7 +70,7 @@ function EditProjectForm({data, projectId}: EditProjectFormProps) {
           <input
             type="submit"
             value="Guardar Cambios"
-            className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors"
+            className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold active:scale-95 transition-all ease-linear cursor-pointer"
           />
         </form>
       </div>

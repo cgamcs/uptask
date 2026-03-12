@@ -92,7 +92,7 @@ export default function EditTaskModal({data, taskId}: EditTaskProps) {
 
                   <input
                     type="submit"
-                    className=" bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black uppercase text-xl cursor-pointer"
+                    className=" bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black uppercase text-xl active:scale-95 transition-all ease-linear cursor-pointer"
                     value="Guardar Cambios"
                   />
                 </form>

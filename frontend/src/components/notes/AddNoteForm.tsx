@@ -68,7 +68,7 @@ function AddNoteForm() {
       <input
         type="submit"
         value="Crear Nota"
-        className="bg-fuchsia-600 hover:bg-fuchsia-700 uppercase font-black w-full p-2 text-white cursor-pointer"
+        className="bg-fuchsia-600 hover:bg-fuchsia-700 uppercase font-black w-full p-2 text-white active:scale-95 transition-all ease-linear cursor-pointer"
       />
     </form>
   )
