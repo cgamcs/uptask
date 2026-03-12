@@ -3,9 +3,10 @@ import { EllipsisVerticalIcon } from "lucide-react"
 import { Menu, Transition } from "@headlessui/react"
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import AddMemberModal from "@/components/team/AddMembermodal"
-import { useQuery } from "@tanstack/react-query"
-import { getProjectTeam } from "@/api/TeamAPI"
+import { queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { getProjectTeam, removeUserFromProject } from "@/api/TeamAPI"
 import Spinner from "@/components/Spinner"
+import { toast } from "sonner"
 
 function ProjectTeamView() {
   const navigate = useNavigate()
@@ -16,6 +17,19 @@ function ProjectTeamView() {
     queryKey: ["projectTeam", projectId],
     queryFn: () => getProjectTeam(projectId),
     retry: false,
+  })
+
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation({
+    mutationFn: removeUserFromProject,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data)
+      queryClient.invalidateQueries({ queryKey: ["projectTeam", projectId] })
+    }
   })
 
   if (isLoading) return <Spinner />
@@ -84,6 +98,7 @@ function ProjectTeamView() {
                           <button
                             type="button"
                             className="block px-3 py-1 text-sm leading-6 text-red-500"
+                            onClick={() => mutate({projectId, userId: member._id})}
                           >
                             Eliminar del Proyecto
                           </button>
