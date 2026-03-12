@@ -36,7 +36,7 @@ function ProjectDetailsView() {
         </button>
 
         <Link
-          className="bg-gray-400 hover:bg-gray-500 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
+          className="bg-gray-500 hover:bg-gray-400 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
           to={'team'}
         >
           Colaboradores
