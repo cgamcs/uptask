@@ -101,7 +101,7 @@ export default function TaskModalDetails() {
                             <span className="font-medium text-slate-600">
                               {statusTranslations[activityLog.status]} - 
                             </span>{' '}
-                            {typeof activityLog.user === 'string' ? activityLog.user : activityLog.user.name}
+                            {activityLog.user.name}
                           </li>
                         ))}
                       </ul>
@@ -122,7 +122,7 @@ export default function TaskModalDetails() {
                     </select>
                   </div>
 
-                  <NotesPanel />
+                  <NotesPanel notes={data.notes} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
