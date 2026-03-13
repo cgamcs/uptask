@@ -14,7 +14,7 @@ function AppLayout() {
 
   if (data) return (
     <>
-      <header className="bg-gray-800">
+      <header className="bg-[#141414]">
         <div className="max-w-7xl 2xl:max-w-screen-2xl mx-auto flex px-5 lg:px-0 flex-row justify-between items-center">
           <div className="w-64">
             <Link to='/'>

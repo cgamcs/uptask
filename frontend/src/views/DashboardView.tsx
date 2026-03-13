@@ -32,7 +32,7 @@ function DashboardView() {
 
         <nav className="mt-5">
           <Link
-            className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
+            className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors rounded-xl"
             to="/projects/create"
           >
             Nuevo Proyecto
@@ -43,12 +43,12 @@ function DashboardView() {
           {data.length ? (
             <ul
               role="list"
-              className="divide-y divide-gray-100 border border-gray-100 mt-10 bg-white shadow-lg"
+              className="mt-10 flex flex-col gap-5"
             >
               {data.map((project) => (
                 <li
                   key={project._id}
-                  className="flex justify-between gap-x-6 px-5 py-10"
+                  className="flex justify-between gap-x-6 px-5 py-10 shadow-md border-gray-100 border rounded-2xl"
                 >
                   <div className="flex min-w-0 gap-x-4">
                     <div className="min-w-0 flex-auto space-y-2">
@@ -91,11 +91,11 @@ function DashboardView() {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white p-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                           <Menu.Item>
                             <Link
                               to={`projects/${project._id}`}
-                              className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                              className="block px-3 py-1 rounded-sm text-sm leading-6 text-gray-900 hover:bg-[#f9f4f4] transition-colors ease-out 100ms"
                             >
                               Ver Proyecto
                             </Link>
@@ -105,7 +105,7 @@ function DashboardView() {
                               <Menu.Item>
                                 <Link
                                   to={`projects/${project._id}/edit`}
-                                  className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                                  className="block px-3 py-1 rounded-sm text-sm leading-6 text-gray-900 hover:bg-[#f9f4f4] transition-colors ease-out 100ms"
                                 >
                                   Editar Proyecto
                                 </Link>
@@ -113,7 +113,7 @@ function DashboardView() {
                               <Menu.Item>
                                 <button
                                   type="button"
-                                  className="block px-3 py-1 text-sm leading-6 text-red-500"
+                                  className="block px-3 py-1 rounded-sm text-sm leading-6 text-red-500 hover:bg-red-100 w-full text-left transition-colors ease-out 100ms"
                                   onClick={() => navigate(location.pathname + `?deleteProject=${project._id}`)}
                                 >
                                   Eliminar Proyecto
