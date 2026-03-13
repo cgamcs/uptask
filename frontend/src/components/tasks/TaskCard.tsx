@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { EllipsisVerticalIcon } from "lucide-react"
 import { Fragment } from "react/jsx-runtime"
 import { toast } from "sonner"
+import {useDraggable} from '@dnd-kit/react'
 import { deleteTask } from "@/api/TaskApi"
 import type { Task } from "@/types"
 
@@ -13,6 +14,10 @@ type TaskCardProps = {
 }
 
 function TaskCard({task, canEdit}: TaskCardProps) {
+  const {ref} = useDraggable({
+    id: task._id,
+  })
+
   const navigate = useNavigate()
   const params = useParams()
   const projectId = params.projectId!
@@ -31,7 +36,7 @@ function TaskCard({task, canEdit}: TaskCardProps) {
   })
   
   return (
-    <li className="p-5 bg-white border border-slate-300 flex justify-between gap-3">
+    <li ref={ref} className="p-5 bg-white border border-slate-300 flex justify-between gap-3 cursor-grab">
       <div className="min-w-0 flex flex-col gap-y-4">
         <button
           type="button"
