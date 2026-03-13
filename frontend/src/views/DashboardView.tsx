@@ -113,7 +113,7 @@ function DashboardView() {
                               <Menu.Item>
                                 <button
                                   type="button"
-                                  className="block px-3 py-1 rounded-sm text-sm leading-6 text-red-500 hover:bg-red-100 w-full text-left transition-colors ease-out 100ms"
+                                  className="block px-3 py-1 rounded-sm text-sm leading-6 text-red-500 hover:bg-red-50 hover:cursor-pointer w-full text-left transition-colors ease-out 100ms"
                                   onClick={() => navigate(location.pathname + `?deleteProject=${project._id}`)}
                                 >
                                   Eliminar Proyecto
