@@ -43,7 +43,7 @@ export default function NavMenu({name} : NavMenuProps) {
               className='block p-2 rounded-lg hover:bg-[#f9f4f4] transition-colors ease-out 100ms'
             >Mis Proyectos</Link>
             <button
-              className='block p-2 rounded-lg hover:bg-red-100 hover:text-red-700 hover:cursor-pointer text-left w-full transition-colors ease-out 100ms'
+              className='block p-2 rounded-lg hover:bg-red-50 hover:text-red-700 hover:cursor-pointer text-left w-full transition-colors ease-out 100ms'
               type='button'
               onClick={logout}
             >

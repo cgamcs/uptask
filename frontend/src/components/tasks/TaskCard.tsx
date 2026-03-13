@@ -36,7 +36,7 @@ function TaskCard({task, canEdit}: TaskCardProps) {
   })
   
   return (
-    <li ref={ref} className="p-5 bg-white border border-slate-300 flex justify-between gap-3 cursor-grab">
+    <li ref={ref} className="p-5 bg-white border border-slate-300 rounded-xl flex justify-between gap-3 cursor-grab">
       <div className="min-w-0 flex flex-col gap-y-4">
         <button
           type="button"
@@ -50,7 +50,7 @@ function TaskCard({task, canEdit}: TaskCardProps) {
         <Menu as="div" className="relative flex-none">
           <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
             <span className="sr-only">opciones</span>
-            <EllipsisVerticalIcon className="h-9 w-9" aria-hidden="true" />
+            <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -61,11 +61,11 @@ function TaskCard({task, canEdit}: TaskCardProps) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white p-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none hover:cursor-pointer">
               <Menu.Item>
                 <button
                   type="button"
-                  className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                  className='w-full block p-2 text-sm text-left rounded-lg hover:bg-[#f9f4f4] transition-colors ease-out 100ms'
                   onClick={() => navigate(location.pathname + `?viewTask=${task._id}`)}
                 >
                   Ver Tarea
@@ -76,7 +76,7 @@ function TaskCard({task, canEdit}: TaskCardProps) {
                   <Menu.Item>
                     <button
                       type="button"
-                      className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                      className='w-full block p-2 text-sm text-left rounded-lg hover:bg-[#f9f4f4] transition-colors ease-out 100ms'
                       onClick={() => navigate(location.pathname + `?editTask=${task._id}`)}
                     >
                       Editar Tarea
@@ -86,7 +86,7 @@ function TaskCard({task, canEdit}: TaskCardProps) {
                   <Menu.Item>
                     <button
                       type="button"
-                      className="block px-3 py-1 text-sm leading-6 text-red-500"
+                      className='w-full block p-2 text-sm text-left rounded-lg hover:bg-red-50 hover:text-red-700 hover:cursor-pointer transition-colors ease-out 100ms'
                       onClick={() => mutate({projectId, taskId: task._id})}
                     >
                       Eliminar Tarea

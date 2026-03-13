@@ -109,10 +109,12 @@ export default function TaskModalDetails() {
                   ) : null}
 
                   <div className="my-5 space-y-3">
-                    <label className="font-bold">Estado Actual:</label>
+                    <label htmlFor="status" className="font-bold">Estado Actual:</label>
 
                     <select
-                      className="w-full px-3 py-1 mt-2 rounded-md bg-gray-100 border-gray-500 border"
+                      id="status"
+                      name="status"
+                      className="w-full px-3 py-1 mt-2 rounded-md bg-[#141414] text-white shadow"
                       defaultValue={data.status}
                       onChange={handleChange}
                     >

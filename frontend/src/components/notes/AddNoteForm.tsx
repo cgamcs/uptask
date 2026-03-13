@@ -51,24 +51,26 @@ function AddNoteForm() {
       noValidate
     >
       <div className="flex flex-col gap-2">
-        <label className="font-medium" htmlFor="content">Crear Nota</label>
+        <div className="flex justify-center items-center">
+          <label className="font-medium" htmlFor="content">Crear Nota</label>
+          {errors.content && (
+          <ErrorMessage>{errors.content.message}</ErrorMessage> 
+          )}
+        </div>
         <input
           type="text"
           id="content"
-          className="w-full p-3 border border-gray-300"
+          className="w-full p-3 border border-gray-300 rounded-xl"
           {...register('content', {
             required: 'El contenido de la nota es obligatorio'
           })}
         />
-        {errors.content && (
-         <ErrorMessage>{errors.content.message}</ErrorMessage> 
-        )}
       </div>
 
       <input
         type="submit"
         value="Crear Nota"
-        className="bg-fuchsia-600 hover:bg-fuchsia-700 uppercase font-black w-full p-2 text-white active:scale-95 transition-all ease-linear cursor-pointer"
+        className="bg-fuchsia-600 hover:bg-fuchsia-700 uppercase font-black w-full p-2 text-white active:scale-[0.97] transition-all ease-linear hover:cursor-pointer rounded-xl"
       />
     </form>
   )
