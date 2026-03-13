@@ -37,39 +37,46 @@ export default function ChangePasswordView() {
 
         <form
           onSubmit={handleSubmit(handleChangePassword)}
-          className=" mt-14 space-y-5 bg-white shadow-lg p-10 rounded-lg"
+          className=" mt-14 space-y-5 bg-white shadow-lg p-10 rounded-2xl border-gray-100 border"
           noValidate
         >
           <div className="mb-5 space-y-3">
-            <label
-              className="text-sm uppercase font-bold"
-              htmlFor="current_password"
-            >
-              Password Actual
-            </label>
+            <div className="flex justify-between items-center">
+              <label
+                className="text-sm uppercase font-bold"
+                htmlFor="current_password"
+              >
+                Password Actual
+              </label>
+              {errors.current_password && (
+                <ErrorMessage>{errors.current_password.message}</ErrorMessage>
+              )}
+            </div>
             <input
               id="current_password"
               type="password"
               placeholder="Password Actual"
-              className="w-full p-3  border border-gray-200"
+              className="w-full p-3  border border-gray-300 rounded-xl"
               {...register("current_password", {
                 required: "El password actual es obligatorio",
               })}
             />
-            {errors.current_password && (
-              <ErrorMessage>{errors.current_password.message}</ErrorMessage>
-            )}
           </div>
 
           <div className="mb-5 space-y-3">
-            <label className="text-sm uppercase font-bold" htmlFor="password">
-              Nuevo Password
-            </label>
+            <div className="flex justify-between items-center">
+              <label className="text-sm uppercase font-bold" htmlFor="password">
+                Nuevo Password
+              </label>
+              {errors.password && (
+                <ErrorMessage>{errors.password.message}</ErrorMessage>
+              )}
+            </div>
             <input
               id="password"
               type="password"
               placeholder="Nuevo Password"
-              className="w-full p-3  border border-gray-200"
+              className="w-full p-3  border border-gray-300 rounded-xl"
               {...register("password", {
                 required: "El Nuevo Password es obligatorio",
                 minLength: {
@@ -78,40 +85,39 @@ export default function ChangePasswordView() {
                 },
               })}
             />
-            {errors.password && (
-              <ErrorMessage>{errors.password.message}</ErrorMessage>
-            )}
           </div>
           <div className="mb-5 space-y-3">
-            <label
-              htmlFor="password_confirmation"
-              className="text-sm uppercase font-bold"
-            >
-              Repetir Password
-            </label>
+            <div className="flex justify-between items-center">
+              <label
+                htmlFor="password_confirmation"
+                className="text-sm uppercase font-bold"
+              >
+                Repetir Password
+              </label>
+              {errors.password_confirmation && (
+                <ErrorMessage>
+                  {errors.password_confirmation.message}
+                </ErrorMessage>
+              )}
+            </div>
 
             <input
               id="password_confirmation"
               type="password"
               placeholder="Repetir Password"
-              className="w-full p-3  border border-gray-200"
+              className="w-full p-3  border border-gray-300 rounded-xl"
               {...register("password_confirmation", {
                 required: "Este campo es obligatorio",
                 validate: (value) =>
                   value === password || "Los Passwords no son iguales",
               })}
             />
-            {errors.password_confirmation && (
-              <ErrorMessage>
-                {errors.password_confirmation.message}
-              </ErrorMessage>
-            )}
           </div>
 
           <input
             type="submit"
             value="Cambiar Password"
-            className="bg-fuchsia-600 w-full p-3 text-white uppercase font-bold hover:bg-fuchsia-700 cursor-pointer transition-colors"
+            className="bg-fuchsia-600 w-full p-3 text-white uppercase font-bold hover:bg-fuchsia-700 cursor-pointer transition-colors active:scale-[0.97] rounded-xl"
           />
         </form>
       </div>

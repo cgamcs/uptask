@@ -36,14 +36,14 @@ export default function NavMenu({name} : NavMenuProps) {
             <p className='text-center'>Hola: {name}</p>
             <Link
               to='/profile'
-              className='block p-2 hover:text-purple-950'
+              className='block p-2 rounded-lg hover:bg-[#f9f4f4] transition-colors ease-out 100ms'
             >Mi Perfil</Link>
             <Link
               to='/'
-              className='block p-2 hover:text-purple-950'
+              className='block p-2 rounded-lg hover:bg-[#f9f4f4] transition-colors ease-out 100ms'
             >Mis Proyectos</Link>
             <button
-              className='block p-2 hover:text-purple-950'
+              className='block p-2 rounded-lg hover:bg-red-100 hover:text-red-700 hover:cursor-pointer text-left w-full transition-colors ease-out 100ms'
               type='button'
               onClick={logout}
             >

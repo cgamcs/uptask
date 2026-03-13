@@ -35,23 +35,25 @@ export default function ProfileForm({ data } : ProfileFormProps) {
 
         <form
           onSubmit={handleSubmit(handleEditProfile)}
-          className=" mt-14 space-y-5  bg-white shadow-lg p-10 rounded-l"
+          className=" mt-14 space-y-5 bg-white shadow-lg p-10 rounded-2xl border-gray-100 border"
           noValidate
         >
           <div className="mb-5 space-y-3">
-            <label className="text-sm uppercase font-bold" htmlFor="name">
-              Nombre
-            </label>
+            <div className="flex justify-between items-center">
+              <label className="text-sm uppercase font-bold" htmlFor="name">
+                Nombre
+              </label>
+              {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+            </div>
             <input
               id="name"
               type="text"
               placeholder="Tu Nombre"
-              className="w-full p-3  border border-gray-200"
+              className="w-full p-3  border border-gray-300 rounded-xl"
               {...register("name", {
                 required: "Nombre de usuario es obligatoro",
               })}
             />
-            {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
           </div>
 
           <div className="mb-5 space-y-3">
@@ -62,7 +64,7 @@ export default function ProfileForm({ data } : ProfileFormProps) {
               id="text"
               type="email"
               placeholder="Tu Email"
-              className="w-full p-3  border border-gray-200"
+              className="w-full p-3  border border-gray-300 rounded-xl"
               {...register("email", {
                 required: "EL e-mail es obligatorio",
                 pattern: {
@@ -78,7 +80,7 @@ export default function ProfileForm({ data } : ProfileFormProps) {
           <input
             type="submit"
             value="Guardar Cambios"
-            className="bg-fuchsia-600 w-full p-3 text-white uppercase font-bold hover:bg-fuchsia-700 cursor-pointer transition-colors"
+            className="bg-fuchsia-600 w-full p-3 text-white uppercase font-bold hover:bg-fuchsia-700 cursor-pointer transition-colors rounded-xl active:scale-[0.97]"
           />
         </form>
       </div>
