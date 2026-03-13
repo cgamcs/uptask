@@ -45,16 +45,21 @@ export default function NewPasswordForm({token} : NewPasswordFormProps) {
     <>
       <form
         onSubmit={handleSubmit(handleNewPassword)}
-        className="space-y-8 p-10  bg-white mt-10"
+        className="space-y-8 p-10 bg-white mt-10 rounded-2xl"
         noValidate
       >
         <div className="flex flex-col gap-5">
-          <label className="font-normal text-2xl">Password</label>
+          <div className="flex justify-between items-center">
+            <label className="font-normal text-2xl">Password</label>
+            {errors.password && (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            )}
+          </div>
 
           <input
             type="password"
             placeholder="Password de Registro"
-            className="w-full p-3  border-gray-300 border"
+            className="w-full p-3  border-gray-300 border rounded-xl"
             {...register("password", {
               required: "El Password es obligatorio",
               minLength: {
@@ -63,35 +68,33 @@ export default function NewPasswordForm({token} : NewPasswordFormProps) {
               },
             })}
           />
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
-          )}
         </div>
 
         <div className="flex flex-col gap-5">
-          <label className="font-normal text-2xl">Repetir Password</label>
+          <div className="flex justify-between items-center">
+            <label className="font-normal text-2xl">Repetir Password</label>
+            {errors.password_confirmation && (
+              <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>
+            )}
+          </div>
 
           <input
             id="password_confirmation"
             type="password"
             placeholder="Repite Password de Registro"
-            className="w-full p-3  border-gray-300 border"
+            className="w-full p-3  border-gray-300 border rounded-xl"
             {...register("password_confirmation", {
               required: "Repetir Password es obligatorio",
               validate: (value) =>
                 value === password || "Los Passwords no son iguales",
             })}
           />
-
-          {errors.password_confirmation && (
-            <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>
-          )}
         </div>
 
         <input
           type="submit"
           value="Establecer Password"
-          className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white font-black active:scale-95 transition-all ease-linear text-xl cursor-pointer"
+          className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white font-black active:scale-[0.97] transition-all ease-linear text-xl cursor-pointer rounded-xl"
         />
       </form>
     </>

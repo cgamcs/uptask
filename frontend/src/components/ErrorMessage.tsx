@@ -1,7 +1,7 @@
 
 function ErrorMessage({children}: {children: React.ReactNode}) {
   return (
-    <div className="text-center bg-red-100 text-red-600 font-bold p-3 uppercase text-sm">
+    <div className="text-center text-red-600 font-bold uppercase text-xs">
       {children}
     </div>
   )

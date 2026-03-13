@@ -30,27 +30,32 @@ export default function LoginView() {
 
   return (
     <>
-      <h1 className="text-5xl font-black text-white">Iniciar Sesión</h1>
-      <p className="text-2xl font-light text-white mt-5">
+      <h1 className="text-3xl font-black text-gray-100">Iniciar Sesión</h1>
+      <p className="text-xl font-light text-gray-100 mt-5">
         Comienza a planear tus proyectos {''}
         <span className=" text-fuchsia-500 font-bold"> iniciando sesión en este formulario</span>
       </p>
 
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="space-y-8 p-10 mt-10 bg-white"
+        className="space-y-8 p-10 mt-10 bg-white rounded-2xl"
         noValidate
       >
         <div className="flex flex-col gap-5">
-          <label
-            className="font-normal text-2xl"
-          >Email</label>
+          <div className="flex justify-between items-center">
+            <label
+              className="font-normal text-2xl"
+            >Email</label>
+            {errors.email && (
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
+            )}
+          </div>
 
           <input
             id="email"
             type="email"
             placeholder="Email de Registro"
-            className="w-full p-3  border-gray-300 border"
+            className="w-full p-3  border-gray-300 border rounded-xl"
             {...register("email", {
               required: "El Email es obligatorio",
               pattern: {
@@ -59,47 +64,46 @@ export default function LoginView() {
               },
             })}
           />
-          {errors.email && (
-            <ErrorMessage>{errors.email.message}</ErrorMessage>
-          )}
         </div>
 
         <div className="flex flex-col gap-5">
-          <label
-            className="font-normal text-2xl"
-          >Password</label>
+          <div className="flex justify-between items-center">
+            <label
+              className="font-normal text-2xl"
+            >Password</label>
+            {errors.password && (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            )}
+          </div>
 
           <input
             type="password"
             placeholder="Password de Registro"
-            className="w-full p-3  border-gray-300 border"
+            className="w-full p-3  border-gray-300 border rounded-xl"
             {...register("password", {
               required: "El Password es obligatorio",
             })}
           />
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
-          )}
         </div>
 
         <input
           type="submit"
           value='Iniciar Sesión'
-          className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white font-black active:scale-95 transition-all ease-linear text-xl cursor-pointer"
+          className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white font-black active:scale-[0.97] transition-all ease-linear text-xl cursor-pointer rounded-xl"
         />
       </form>
 
       <nav className="mt-10 flex flex-col space-y-4">
         <Link
-          className="text-center text-gray-300 active:scale-95 transition-transform ease-linear 150ms"
+          className="text-center text-gray-200 hover:text-fuchsia-400 transition-colors ease-linear 150ms"
           to='/auth/register'
         >¿No tienes cuenta? Crear una</Link>
 
         <Link
           to='/auth/forgot-password'
-          className="text-center text-gray-300 font-normal"
+          className="text-center text-gray-200 hover:text-fuchsia-400 transition-colors ease-linear 150ms"
         >
-          ¿Olvidaste tu contraseña? Reestablecer
+          ¿Olvidaste tu contraseña?
         </Link>
       </nav>
     </>

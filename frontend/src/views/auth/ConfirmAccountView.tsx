@@ -27,25 +27,30 @@ export default function ConfirmAccountView() {
 
   return (
     <>
-      <h1 className="text-5xl font-black text-white">Confirma tu Cuenta</h1>
-      <p className="text-2xl font-light text-white mt-5">
+      <h1 className="text-5xl font-black text-gray-100">Confirma tu Cuenta</h1>
+      <p className="text-2xl font-light text-gray-100 mt-5">
         Ingresa el código que recibiste {''}
         <span className=" text-fuchsia-500 font-bold"> por e-mail</span>
       </p>
       <form
-        className="space-y-8 p-10 bg-white mt-10"
+        className="space-y-8 p-10 bg-white mt-10 rounded-2xl"
       >
         <label
           className="font-normal text-2xl text-center block"
         >Código de 6 dígitos</label>
-        <div className="flex justify-center gap-5">
+        <div className="flex justify-center items-center gap-3">
           <PinInput value={token} onChange={handleChange} onComplete={handleComplete}>
-            <PinInputField className="w-10 h-10 p-3 rounded-lg border-gray-300 border bg-white placeholder:text-white" />
-            <PinInputField className="w-10 h-10 p-3 rounded-lg border-gray-300 border bg-white placeholder:text-white" />
-            <PinInputField className="w-10 h-10 p-3 rounded-lg border-gray-300 border bg-white placeholder:text-white" />
-            <PinInputField className="w-10 h-10 p-3 rounded-lg border-gray-300 border bg-white placeholder:text-white" />
-            <PinInputField className="w-10 h-10 p-3 rounded-lg border-gray-300 border bg-white placeholder:text-white" />
-            <PinInputField className="w-10 h-10 p-3 rounded-lg border-gray-300 border bg-white placeholder:text-white" />
+            <div className="flex rounded-xl border-gray-300 border overflow-hidden">
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+            </div>
+            <span className="bg-black h-1 w-5 block rounded-full"></span>
+            <div className="flex rounded-xl border-gray-300 border overflow-hidden">
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+            </div>
           </PinInput>
         </div>
 

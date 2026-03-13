@@ -37,18 +37,19 @@ export default function NewPasswordToken({token, setToken, setIsValidToken} : Ne
         <label className="font-normal text-2xl text-center block">
           Código de 6 dígitos
         </label>
-        <div className="flex justify-center gap-5">
-          <PinInput
-            value={token}
-            onChange={handleChange}
-            onComplete={handleComplete}
-          >
-            <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border placeholder-white" />
-            <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border placeholder-white" />
-            <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border placeholder-white" />
-            <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border placeholder-white" />
-            <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border placeholder-white" />
-            <PinInputField className="h-10 w-10 p-3 rounded-lg border-gray-300 border placeholder-white" />
+        <div className="flex justify-center items-center gap-3">
+          <PinInput value={token} onChange={handleChange} onComplete={handleComplete}>
+            <div className="flex rounded-xl border-gray-300 border overflow-hidden">
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+            </div>
+            <span className="bg-black h-1 w-5 block rounded-full"></span>
+            <div className="flex rounded-xl border-gray-300 border overflow-hidden">
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+              <PinInputField className="w-10 h-10 p-3 bg-white placeholder:text-white outline-0" />
+            </div>
           </PinInput>
         </div>
       </form>
