@@ -67,7 +67,7 @@ function EditProjectForm({data, projectId}: EditProjectFormProps) {
 
         <form
           action=""
-          className="mt-10 bg-white p-10 shadow-lg rounded-2xl border-gray-100 border"
+          className="mt-10 bg-white p-10 shadow-lg rounded-2xl border-gray-200 border"
           onSubmit={handleSubmit(handleForm)}
         >
           <ProjectForm register={register} errors={errors} />

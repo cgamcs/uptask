@@ -32,19 +32,23 @@ function CreateProjectView() {
   return (
     <>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-5xl font-black">Crear Proyecto</h1>
-        <p className="text-2xl font-light text-gray-500 mt-5">Llena el siguiente formulario para crear un proyecto</p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-black">Crear Proyecto</h1>
+            <p className="text-xl font-light text-gray-500 mt-5">Llena el siguiente formulario para crear un proyecto</p>
+          </div>
+          <nav className="mt-5">
+            <Link
+              className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors rounded-xl"
+              to='/'
+            >Volver a Proyectos</Link>
+          </nav>
+        </div>
 
-        <nav className="mt-5">
-          <Link
-            className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
-            to='/'
-          >Volver a Proyectos</Link>
-        </nav>
 
         <form 
           action=""
-          className="mt-10 bg-white p-10 shadow-lg rounded-lg"
+          className="mt-10 bg-white p-10 border-gray-200 border shadow-lg rounded-xl"
           onSubmit={handleSubmit(handleForm)}
         >
           <ProjectForm
@@ -55,7 +59,7 @@ function CreateProjectView() {
           <input 
             type="submit"
             value="Crear Proyecto"
-            className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer active:scale-95 transition-all ease-linear"
+            className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer active:scale-[0.97] transition-all ease-linear rounde-xl"
           />
         </form>
       </div>
