@@ -29,29 +29,35 @@ function ProjectDetailsView() {
 
   if (data && user) return (
     <>
-      <h1 className="text-4xl font-bold">{data.projectName}</h1>
-      <p className="text-xl text-gray-500 font-light mt-5">
-        {data.description}
-      </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-4xl font-bold">{data.projectName}</h1>
+          <p className="text-xl text-gray-500 font-light mt-5">
+            {data.description}
+          </p>
+        </div>
 
-      {isManager(data.manager, user._id) && (
-        <nav className="my-5 flex gap-5">
-          <button
-            type="button"
-            className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
-            onClick={() => navigate("?newTask=true")}
-          >
-            Agregar Tarea
-          </button>
+        <div>
+          {isManager(data.manager, user._id) && (
+            <nav className="my-5 flex gap-5">
+              <button
+                type="button"
+                className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors rounded-xl"
+                onClick={() => navigate("?newTask=true")}
+              >
+                Agregar Tarea
+              </button>
 
-          <Link
-            className="bg-gray-500 hover:bg-gray-400 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors"
-            to={'team'}
-          >
-            Colaboradores
-          </Link>
-        </nav>
-      )}
+              <Link
+                className="bg-[#141414] hover:bg-[#141414]/80 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors rounded-xl"
+                to={'team'}
+              >
+                Colaboradores
+              </Link>
+            </nav>
+          )}
+        </div>
+      </div>
 
       <TaskList tasks={data.tasks} canEdit={canEdit} />
 

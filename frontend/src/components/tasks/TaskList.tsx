@@ -26,11 +26,19 @@ const initialStatusProps: GroupedTasks = {
 }
 
 const statusStyles : {[key: string]: string } = {
-  pending: 'border-t-slata-500',
-  onHold: 'border-t-red-500',
-  inProgress: 'border-t-blue-500',
-  underReview: 'border-t-amber-500',
-  completed: 'border-t-emerald-500'
+  pending: 'bg-slate-500',
+  onHold: 'bg-red-500',
+  inProgress: 'bg-blue-500',
+  underReview: 'bg-amber-500',
+  completed: 'bg-emerald-500'
+}
+
+const statusBgStyles : {[key: string]: string } = {
+  pending: 'bg-slate-100',
+  onHold: 'bg-red-100',
+  inProgress: 'bg-blue-100',
+  underReview: 'bg-amber-100',
+  completed: 'bg-emerald-100'
 }
 
 function TaskList({tasks, canEdit}: TasklistProps) {
@@ -66,14 +74,17 @@ function TaskList({tasks, canEdit}: TasklistProps) {
 
   return (
     <DragDropProvider onDragEnd={handleDragEnd}>
-      <h2 className="text-5xl font-black my-10">Tareas</h2>
+      <h2 className="text-xl font-black my-5">Tareas</h2>
 
       <div className="flex gap-5 overflow-x-scroll 2xl:overflow-auto pb-32">
         {Object.entries(groupedTasks).map(([status, tasks]) => (
           <div key={status} className="min-w-75 2xl:min-w-0 2xl:w-1/5">
             <h3 
-              className={`capitalize text-xl font-light border border-slate-300 bg-white p-3 border-t-8 ${statusStyles[status]}`}
-            >{statusTranslations[status]}</h3>
+              className={`flex justify-between items-center rounded-xl text-lg font-light ${statusBgStyles[status]} py-1 px-3`}
+            >
+              {statusTranslations[status]}
+              <span className={`h-5 w-5 block rounded-full ${statusStyles[status]}`}></span>
+            </h3>
 
             <DropTask id={status} />
 
