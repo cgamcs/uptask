@@ -48,7 +48,7 @@ function ProjectTeamView() {
           </div>
 
           <div>
-            <nav className="my-5 flex gap-5">
+            <nav className="flex gap-5">
               <button
                 type="button"
                 className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white cursor-pointer text-xl font-bold transition-colors rounded-xl"
